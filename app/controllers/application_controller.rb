@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :basic_auth, unless: :local_request?
-
+  before_action :basic_auth
 
   private
 
@@ -10,8 +9,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def local_request?
-    request.local?
-  end
-  
 end
