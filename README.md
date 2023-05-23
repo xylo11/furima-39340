@@ -15,7 +15,7 @@
 | birth_date         | date   | false |                  |
 
 * has_many :items 
-* has_many : purchase_records
+* has_many :purchase_records
 
 ## **itemsテーブル**
 
@@ -35,7 +35,7 @@
 * has_one :purchase_record
 
 
-## **purchase_recordテーブル**
+## **purchase_recordsテーブル**
 
 | Column | Type       | Null  | Option            |
 | ------ | ---------- | ----- | ----------------- |
@@ -46,7 +46,7 @@
 * belongs_to :item
 * has_one :shipping_information
 
-## **shipping_informationテーブル**
+## **shipping_informationsテーブル**
 
 | Column          | Type       | Null  | Option            |
 | --------------- | ---------- | ----- | ----------------- |
