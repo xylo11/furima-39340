@@ -1,24 +1,51 @@
-# README
+# **テーブル設計**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+## **usersテーブル**
 
-* Ruby version
+| Column             | Type   | Null  | Option           |
+| ------------------ | ------ | ----- | ---------------- |
+| nickname           | string | false |                  |
+| email              | string | false | uniqueness: true |
+| encrypted_password | string | false |                  |
+| family_name        | string | false |                  |
+| first_name         | string | false |                  |
+| family_name_kana   | string | false |                  |
+| first_name_kana    | string | false |                  |
+| birth_date         | date   | false |                  |
 
-* System dependencies
 
-* Configuration
+## **itemsテーブル**
 
-* Database creation
+| Column                    | Type       | Null  | Option            |
+| ------------------------- | ---------- | ----- | ----------------- |
+| item_name                 | string     | false |                   |
+| item_description          | text       | false |                   |
+| item_category_id          | integer    | false |                   |
+| item_condition_id         | integer    | false |                   |
+| item_shipping_method_id   | integer    | false |                   |
+| item_prefecture_id        | integer    | false |                   |
+| item_shipping_duration_id | integer    | false |                   |
+| item_price                | integer    | false |                   |
+| user                      | references | false | foreign_key: true |
 
-* Database initialization
 
-* How to run the test suite
+## **purchase_recordテーブル**
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column | Type       | Null  | Option            |
+| ------ | ---------- | ----- | ----------------- |
+| user   | references | false | foreign_key: true |
+| item   | references | false | foreign_key: true |
 
-* Deployment instructions
 
-* ...
+## **shipping_informationテーブル**
+
+| Column          | Type       | Null  | Option            |
+| --------------- | ---------- | ----- | ----------------- |
+| postal_code     | string     | false |                   |
+| prefecture_id   | integer    | false |                   |
+| city            | string     | false |                   |
+| street_address  | string     | false |                   |
+| building_name   | string     | true  |                   |
+| phone_number    | string     | false |                   |
+| purchase_record | references | false | foreign_key: true |
