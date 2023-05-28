@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   validates :item_description, presence: true
   validates :item_price,       presence: true
 
-  #半角数字のみを許可し、300~9999999までの範囲
+  #半角数字のみを許可し、300~9999999の間のみ許可
   validates :item_price, format: { with: /\A[0-9]+\z/ }, 
   numericality: { only_integer: true, 
     greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
