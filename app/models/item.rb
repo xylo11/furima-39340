@@ -9,10 +9,10 @@ class Item < ApplicationRecord
   belongs_to :item_shipping_duration
 
   #空の投稿を保存できないようにする
-  validates :image,                   presence: true
-  validates :item_name, :text,        presence: true
-  validates :item_description, :text, presence: true
-  validates :item_price,              presence: true
+  validates :image,            presence: true
+  validates :item_name,        presence: true
+  validates :item_description, presence: true
+  validates :item_price,       presence: true
 
   #半角数字のみを許可し、300~9999999までの範囲
   validates :item_price, format: { with: /\A[0-9]+\z/ }, 
