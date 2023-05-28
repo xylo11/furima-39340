@@ -9,9 +9,10 @@ class Item < ApplicationRecord
   belongs_to :item_shipping_duration
 
   #空の投稿を保存できないようにする
-  validates :item_name, :text, presence: true
+  validates :image,                   presence: true
+  validates :item_name, :text,        presence: true
   validates :item_description, :text, presence: true
-  validates :item_price, presence: true
+  validates :item_price,              presence: true
 
   #半角数字のみを許可し、300~9999999までの範囲
   validates :item_price, format: { with: /\A[0-9]+\z/ }, 
@@ -19,17 +20,10 @@ class Item < ApplicationRecord
     greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   #ジャンルの選択が「---」の時は保存できないようにする
-  validates :item_category_id, numericality: { other_than: 1 }
-  validates :item_condition_id, numericality: { other_than: 1 }
-  validates :item_shipping_method_id, numericality: { other_than: 1 }
-  validates :item_prefecture_id, numericality: { other_than: 1 }
+  validates :item_category_id,          numericality: { other_than: 1 }
+  validates :item_condition_id,         numericality: { other_than: 1 }
+  validates :item_shipping_method_id,   numericality: { other_than: 1 }
+  validates :item_prefecture_id,        numericality: { other_than: 1 }
   validates :item_shipping_duration_id, numericality: { other_than: 1 }
 
-  #ActiveStorageの画像が空でないことを検証する
-
-  private
-
-  def image_presence
-    errors.add(:image, "must be attached") unless image.attached?
-  end
 end
