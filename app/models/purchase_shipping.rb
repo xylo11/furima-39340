@@ -15,7 +15,7 @@ class PurchaseShipping
   validates :item_prefecture_id, numericality: { other_than: 1 }
 
   def save
-    # 購入情報を保存し、変数purchaseに代入する
+    # 購入情報を保存し、変数purchase_recordに代入する
     purchase_record = PurchaseRecord.create(user_id: user_id, item_id: item_id)
     # 住所を保存する
     ShippingInformation.create(postal_code: postal_code, item_prefecture_id: item_prefecture_id, city: city, street_address: street_address, building_name: building_name, phone_number: phone_number, purchase_record_id: purchase_record.id)
