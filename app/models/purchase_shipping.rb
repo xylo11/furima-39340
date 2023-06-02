@@ -1,6 +1,6 @@
 class PurchaseShipping
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :item_prefecture_id, :city, :street_address, :building_name, :phone_number
+  attr_accessor :user_id, :item_id, :postal_code, :item_prefecture_id, :city, :street_address, :building_name, :phone_number, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -10,6 +10,7 @@ class PurchaseShipping
     validates :city
     validates :street_address
     validates :phone_number, format: {with: /\A[0-9]{10,11}\z/}
+    validates :token
   end
   # ジャンルの選択が「---」の時は保存できないようにする
   validates :item_prefecture_id, numericality: { other_than: 1 }
