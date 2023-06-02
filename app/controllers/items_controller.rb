@@ -48,8 +48,9 @@ class ItemsController < ApplicationController
                                  :item_price).merge(user_id: current_user.id)
   end
 
+  # 出品者以外あるいは自身が出品した売却済み商品の商品情報編集ページへ遷移しようとすると、トップページに遷移する
   def move_to_index
-    return if current_user.id == @item.user_id
+    return unless current_user.id == @item.user_id || @item.purchase.present?
 
     redirect_to action: :index
   end
