@@ -25,4 +25,13 @@ class PurchasesController < ApplicationController
     )
   end
 
+  # ログイン状態の場合でも、自身が出品していない売却済み商品の商品購入ページへ遷移しようとすると、トップページに遷移する
+  # ログイン状態の場合でも、自身が出品した商品の商品購入ページに遷移しようとすると、商品の販売状況に関わらずトップページに遷移する
+  def move_to_root
+    @item = Item.find(params[:item_id])
+    return unless current_user.id == @item.user_id || @item.purchase.present?
+
+    redirect_to root_path
+  end
+
 end
