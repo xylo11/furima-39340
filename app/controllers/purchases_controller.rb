@@ -34,4 +34,7 @@ class PurchasesController < ApplicationController
     redirect_to root_path
   end
 
+  def pay_item #payjpの設定後実装
+  end
+
 end
