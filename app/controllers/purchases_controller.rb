@@ -29,7 +29,7 @@ class PurchasesController < ApplicationController
   # ログイン状態の場合でも、自身が出品した商品の商品購入ページに遷移しようとすると、商品の販売状況に関わらずトップページに遷移する
   def move_to_root
     @item = Item.find(params[:item_id])
-    return unless current_user.id == @item.user_id || @item.purchase.present?
+    return unless current_user.id == @item.user_id || @item.purchase_record.present?
 
     redirect_to root_path
   end
