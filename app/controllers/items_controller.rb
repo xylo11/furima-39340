@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
 
   # 出品者以外あるいは自身が出品した売却済み商品の商品情報編集ページへ遷移しようとすると、トップページに遷移する
   def move_to_index
-    return unless current_user.id == @item.user_id || @item.purchase.present?
+    return unless current_user.id != @item.user_id || @item.purchase_record.present?
 
     redirect_to action: :index
   end
