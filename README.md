@@ -48,14 +48,14 @@
 
 ## **shipping_informationsテーブル**
 
-| Column          | Type       | Null  | Option            |
-| --------------- | ---------- | ----- | ----------------- |
-| postal_code     | string     | false |                   |
-| prefecture_id   | integer    | false | active_hash       |
-| city            | string     | false |                   |
-| street_address  | string     | false |                   |
-| building_name   | string     | true  |                   |
-| phone_number    | string     | false |                   |
-| purchase_record | references | false | foreign_key: true |
+| Column             | Type       | Null  | Option            |
+| ------------------ | ---------- | ----- | ----------------- |
+| postal_code        | string     | false |                   |
+| item_prefecture_id | integer    | false | active_hash       |
+| city               | string     | false |                   |
+| street_address     | string     | false |                   |
+| building_name      | string     | true  |                   |
+| phone_number       | string     | false |                   |
+| purchase_record    | references | false | foreign_key: true |
 
 * belongs_to :purchase_record
