@@ -20,9 +20,8 @@ class PurchasesController < ApplicationController
   private
 
   def purchase_shipping_params
-    params.require(:purchase_shipping).permit(:postal_code, :item_prefecture_id, :city, :street_address, :building_name, 
-      :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token]
-    )
+    params.require(:purchase_shipping).permit(:postal_code, :item_prefecture_id, :city, :street_address, :building_name,
+                                              :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   # ログイン状態の場合でも、自身が出品していない売却済み商品の商品購入ページへ遷移しようとすると、トップページに遷移する
@@ -35,12 +34,11 @@ class PurchasesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
-      amount: @item.item_price,  # 商品の値段
-      card: purchase_shipping_params[:token],    # カードトークン
+      amount: @item.item_price, # 商品の値段
+      card: purchase_shipping_params[:token], # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
-
 end
